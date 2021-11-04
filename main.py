@@ -22,7 +22,7 @@ def StoreCurrentPrices():
     prices.insert(0, DateTime)
     print(prices)
 
-    with open('prices.csv', 'a',newline="") as DateFile:
+    with open('prices.csv', 'r+',newline="") as DateFile:
         writer = csv.writer(DateFile)
         writer.writerow(prices)
 
