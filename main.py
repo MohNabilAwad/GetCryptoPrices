@@ -1,7 +1,5 @@
 import requests, json,datetime,schedule,csv,time
 
-
-
 url = "https://api.nomics.com/v1/prices?key=a9275858e9280ae020cc52fd9b6fdad1103d651e&format=json"
 
 def StoreCurrentPrices():
