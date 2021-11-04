@@ -23,8 +23,29 @@ def StoreCurrentPrices():
     with open('prices.csv', 'a',newline="") as DateFile:
         writer = csv.writer(DateFile)
         writer.writerow(prices)
+    #upload data to guthub
+    token = "02bf29c25181460ec263b9"+"fcde985fecb5cc264f"
+    repo = 'MohNabilAwad/GetCryptoPrices'
+    path = 'prices.csv'
+    data = open("prices.csv", "r").read()
+    
+    # to get the key for github
+    response = requests.get('https://raw.githubusercontent.com/MohNabilAwad/GetCryptoPrices/main/prices.csv')
+    GitHubText = json.loads(response.text)
+    r = requests.put(
+        f'https://api.github.com/repos/{repo}/contents/{path}',
+        headers = {
+            'Authorization': f'Token {token}'
+        },
+        json = {
+            "message": "add new file",
+            "content": base64.b64encode(data.encode()).decode(),
+            "branch": "master",
+            "sha":GitHubText["sha"]
+        }
+    )
 
-schedule.every(2).seconds.do(StoreCurrentPrices)
+schedule.every(3).seconds.do(StoreCurrentPrices)
 
 while True:
     schedule.run_pending()
