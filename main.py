@@ -3,7 +3,8 @@ from ftplib import FTP
 
 from os import environ
 from flask import Flask
-from run import app as application
+app = Flask(__name__)
+
 
 
 
@@ -51,7 +52,7 @@ def StoreCurrentPrices():
     if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
         port = int(os.environ.get('PORT', 5000))
-        application.run(host='0.0.0.0', port=port)
+        app.run(host='0.0.0.0', port=port)
 
 
     
