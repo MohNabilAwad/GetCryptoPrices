@@ -1,5 +1,8 @@
-import requests, json,datetime,csv,time
+import requests, json,datetime,csv,time,schedule
 from ftplib import FTP
+
+from os import environ
+from flask import Flask
 
 
 
@@ -43,8 +46,16 @@ def StoreCurrentPrices():
     filename = 'prices.csv'
     ftp.storlines('STOR ' + filename, open(filename, 'rb'))
     ftp.quit()
+    
+    app = Flask(__name__)
+    app.run(environ.get('PORT'))
+
 
     
     # upload the file to a we
 
-StoreCurrentPrices()
+schedule.every(20).seconds.do(StoreCurrentPrices)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
