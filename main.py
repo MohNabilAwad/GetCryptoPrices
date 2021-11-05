@@ -52,7 +52,7 @@ def StoreCurrentPrices():
     
     @app.route("/")
     def hello():
-        return DateFile
+        return DateTime
     
     if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
