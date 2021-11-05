@@ -6,9 +6,7 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello():
-    return "Hello from Python!"
+
 
 
 url = "https://api.nomics.com/v1/prices?key=a9275858e9280ae020cc52fd9b6fdad1103d651e&format=json"
@@ -51,6 +49,10 @@ def StoreCurrentPrices():
     filename = 'prices.csv'
     ftp.storlines('STOR ' + filename, open(filename, 'rb'))
     ftp.quit()
+    
+    @app.route("/")
+    def hello():
+        return DateFile
     
     if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
