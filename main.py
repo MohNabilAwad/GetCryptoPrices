@@ -47,8 +47,9 @@ def StoreCurrentPrices():
     ftp.storlines('STOR ' + filename, open(filename, 'rb'))
     ftp.quit()
     
+    port = int(os.environ.get('PORT', 5000))
     app = Flask(__name__)
-    app.run(environ.get('PORT'))
+    app.run(environ.get(port))
 
 
     
