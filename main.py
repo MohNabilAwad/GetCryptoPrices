@@ -63,8 +63,8 @@ def StoreCurrentPrices():
     
     # upload the file to a we
 
-schedule.every(20).seconds.do(StoreCurrentPrices)
+#schedule.every(20).seconds.do(StoreCurrentPrices)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+#while True:
+#    schedule.run_pending()
+#    time.sleep(1)
